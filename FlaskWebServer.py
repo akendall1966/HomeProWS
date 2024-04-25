@@ -101,4 +101,4 @@ def authenticate():
 if __name__ == '__main__':
     # Use SSL context to configure SSL certificate and key
     ssl_context = ('cert.pem', 'key.pem')
-    app.run(debug=True, ssl_context=ssl_context)
+    app.run(debug=True, ssl_context=ssl_context, host='0.0.0.0', port=6000)
