@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 # Sample username and password (in production, use a more secure method to store and validate credentials)
 USERNAME = 'admin'
-PASSWORD = 'password'
+PASSWORD = '46GF6OKQIMYX7BJ6N2M0GLWNCBHFWG29'
 
 # Call an API and return the response
 def request_get_response(api, params):
@@ -27,7 +27,7 @@ def electricity():
         return jsonify(output)
     
 @app.route('/electricityStatus')
-def electricity():
+def electricityStatus():
     auth = request.authorization
     if not auth or not check_auth(auth.username, auth.password):
         return authenticate()
@@ -38,13 +38,49 @@ def electricity():
         output = json.dumps(meter_consump)
         return jsonify(output)
     
-@app.route('/electricityStatus')
-def electricity():
+@app.route('/electricityInfo')
+def electricityInfo():
     auth = request.authorization
     if not auth or not check_auth(auth.username, auth.password):
         return authenticate()
     params = {"meter_type": "elec"}
+    rsp = request_get_response("get_meter_info", params)
+    if  rsp.ok:
+        meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
+        output = json.dumps(meter_consump)
+        return jsonify(output)
+    
+@app.route('/gas')
+def gas():
+    auth = request.authorization
+    if not auth or not check_auth(auth.username, auth.password):
+        return authenticate()
+    params = {"meter_type": "gas"}
+    rsp = request_get_response("get_meter_consumption", params)
+    if  rsp.ok:
+        meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
+        output = json.dumps(meter_consump)
+        return jsonify(output)
+    
+@app.route('/gasStatus')
+def gasStatus():
+    auth = request.authorization
+    if not auth or not check_auth(auth.username, auth.password):
+        return authenticate()
+    params = {"meter_type": "gas"}
     rsp = request_get_response("get_meter_status", params)
+    if  rsp.ok:
+        meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
+        output = json.dumps(meter_consump)
+        return jsonify(output)
+    
+@app.route('/gasInfo')
+def gasInfo():
+    auth = request.authorization
+    if not auth or not check_auth(auth.username, auth.password):
+        return authenticate()
+    params = {"meter_type": "gas"}
+    rsp = request_get_response("get_meter_info", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
         output = json.dumps(meter_consump)
