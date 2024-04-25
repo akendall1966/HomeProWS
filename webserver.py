@@ -9,96 +9,98 @@ print(han_host)
 class MyHTTPRequestHandler(BaseHTTPRequestHandler):
     # Handle GET requests
     def do_GET(self):
-        if self.path == '/electricity':
-            # Set response status code
-            self.send_response(200)
-            params = {"meter_type": "elec"}
-            # Set headers
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            rsp = request_get_response("get_meter_consumption", params)
-            if  rsp.ok:
-                meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-                output = json.dumps(meter_consump)
-                self.wfile.write(output.encode('utf8'))
-                return
+        match self.path:
+
+            case '/electricity':
+                # Set response status code
+                self.send_response(200)
+                params = {"meter_type": "elec"}
+                # Set headers
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                rsp = request_get_response("get_meter_consumption", params)
+                if  rsp.ok:
+                    meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
+                    output = json.dumps(meter_consump)
+                    self.wfile.write(output.encode('utf8'))
+                    return
                 
-        elif self.path == '/electricityStatus':
-            # Set response status code
-            self.send_response(200)
-            params = {"meter_type": "elec"}
-            # Set headers
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            rsp = request_get_response("get_meter_status", params)
-            if  rsp.ok:
-                meter_consump = json.loads(json.loads(rsp.text)['meter_status'])
-                output = json.dumps(meter_consump)
-                self.wfile.write(output.encode('utf8'))
-                return
+            case '/electricityStatus':
+                # Set response status code
+                self.send_response(200)
+                params = {"meter_type": "elec"}
+                # Set headers
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                rsp = request_get_response("get_meter_status", params)
+                if  rsp.ok:
+                    meter_consump = json.loads(json.loads(rsp.text)['meter_status'])
+                    output = json.dumps(meter_consump)
+                    self.wfile.write(output.encode('utf8'))
+                    return
 
-        elif self.path == '/electricityInfo':
-            # Set response status code
-            self.send_response(200)
-            params = {"meter_type": "elec"}
-            # Set headers
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            rsp = request_get_response("get_meter_info", params)
-            if  rsp.ok:
-                meter_consump = json.loads(json.loads(rsp.text)['meter_info'])
-                output = json.dumps(meter_consump)
-                self.wfile.write(output.encode('utf8'))
-                return
+            case '/electricityInfo':
+                # Set response status code
+                self.send_response(200)
+                params = {"meter_type": "elec"}
+                # Set headers
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                rsp = request_get_response("get_meter_info", params)
+                if  rsp.ok:
+                    meter_consump = json.loads(json.loads(rsp.text)['meter_info'])
+                    output = json.dumps(meter_consump)
+                    self.wfile.write(output.encode('utf8'))
+                    return
 
                 
-        elif self.path == '/gas':
-            # Set response status code
-            self.send_response(200)
-            params = {"meter_type": "gas"}
-            # Set headers
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            rsp = request_get_response("get_meter_consumption", params)
-            if  rsp.ok:
-                meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-                output = json.dumps(meter_consump)
-                self.wfile.write(output.encode('utf8'))
-                return
+            case '/gas':
+                # Set response status code
+                self.send_response(200)
+                params = {"meter_type": "gas"}
+                # Set headers
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                rsp = request_get_response("get_meter_consumption", params)
+                if  rsp.ok:
+                    meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
+                    output = json.dumps(meter_consump)
+                    self.wfile.write(output.encode('utf8'))
+                    return
 
-        elif self.path == '/gasStatus':
-            # Set response status code
-            self.send_response(200)
-            params = {"meter_type": "gas"}
-            # Set headers
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            rsp = request_get_response("get_meter_status", params)
-            if  rsp.ok:
-                meter_consump = json.loads(json.loads(rsp.text)['meter_status'])
-                output = json.dumps(meter_consump)
-                self.wfile.write(output.encode('utf8'))
-                return
+            case '/gasStatus':
+                # Set response status code
+                self.send_response(200)
+                params = {"meter_type": "gas"}
+                # Set headers
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                rsp = request_get_response("get_meter_status", params)
+                if  rsp.ok:
+                    meter_consump = json.loads(json.loads(rsp.text)['meter_status'])
+                    output = json.dumps(meter_consump)
+                    self.wfile.write(output.encode('utf8'))
+                    return
 
-        elif self.path == '/gasInfo':
-            # Set response status code
-            self.send_response(200)
-            params = {"meter_type": "gas"}
-            # Set headers
-            self.send_header('Content-type', 'application/json')
-            self.end_headers()
-            rsp = request_get_response("get_meter_info", params)
-            if  rsp.ok:
-                meter_consump = json.loads(json.loads(rsp.text)['meter_info'])
-                output = json.dumps(meter_consump)
-                self.wfile.write(output.encode('utf8'))
-                return
+            case '/gasInfo':
+                # Set response status code
+                self.send_response(200)
+                params = {"meter_type": "gas"}
+                # Set headers
+                self.send_header('Content-type', 'application/json')
+                self.end_headers()
+                rsp = request_get_response("get_meter_info", params)
+                if  rsp.ok:
+                    meter_consump = json.loads(json.loads(rsp.text)['meter_info'])
+                    output = json.dumps(meter_consump)
+                    self.wfile.write(output.encode('utf8'))
+                    return
 
-        else:
-            self.send_response(404)
-            self.send_header('Content-type', 'text/plain')
-            self.end_headers()
-#           self.wfile.write(b'404 Not Found')
+            case _:
+                self.send_response(404)
+                self.send_header('Content-type', 'text/plain')
+                self.end_headers()
+    #           self.wfile.write(b'404 Not Found')
 
 # Call an API and return the response
 def request_get_response(api, params):
