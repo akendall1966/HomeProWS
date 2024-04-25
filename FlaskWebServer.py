@@ -1,11 +1,14 @@
 from flask import Flask, request, Response, jsonify
 import os, time, requests, json, signal, ssl
 
-app = Flask(__name__)
+han_host = os.getenv('HAN_API_HOST')
+print(han_host)
 
 # Sample username and password (in production, use a more secure method to store and validate credentials)
 USERNAME = 'admin'
 PASSWORD = '46GF6OKQIMYX7BJ6N2M0GLWNCBHFWG29'
+
+app = Flask(__name__)
 
 # Call an API and return the response
 def request_get_response(api, params):
@@ -23,8 +26,7 @@ def electricity():
     rsp = request_get_response("get_meter_consumption", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        output = json.dumps(meter_consump)
-        return jsonify(output)
+        return jsonify(meter_consump)
     
 @app.route('/electricityStatus')
 def electricityStatus():
@@ -35,8 +37,7 @@ def electricityStatus():
     rsp = request_get_response("get_meter_status", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        output = json.dumps(meter_consump)
-        return jsonify(output)
+        return jsonify(meter_consump)
     
 @app.route('/electricityInfo')
 def electricityInfo():
@@ -47,8 +48,7 @@ def electricityInfo():
     rsp = request_get_response("get_meter_info", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        output = json.dumps(meter_consump)
-        return jsonify(output)
+        return jsonify(meter_consump)
     
 @app.route('/gas')
 def gas():
@@ -59,8 +59,7 @@ def gas():
     rsp = request_get_response("get_meter_consumption", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        output = json.dumps(meter_consump)
-        return jsonify(output)
+        return jsonify(meter_consump)
     
 @app.route('/gasStatus')
 def gasStatus():
@@ -71,8 +70,7 @@ def gasStatus():
     rsp = request_get_response("get_meter_status", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        output = json.dumps(meter_consump)
-        return jsonify(output)
+        return jsonify(meter_consump)
     
 @app.route('/gasInfo')
 def gasInfo():
@@ -83,8 +81,7 @@ def gasInfo():
     rsp = request_get_response("get_meter_info", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        output = json.dumps(meter_consump)
-        return jsonify(output)
+        return jsonify(meter_consump)
 
 def check_auth(username, password):
     """Check if a username and password are valid."""
@@ -101,4 +98,4 @@ def authenticate():
 if __name__ == '__main__':
     # Use SSL context to configure SSL certificate and key
     ssl_context = ('cert.pem', 'key.pem')
-    app.run(debug=True, ssl_context=ssl_context, host='0.0.0.0', port=6000)
+    app.run(debug=True, ssl_context=ssl_context, host='0.0.0.0', port=8080)
