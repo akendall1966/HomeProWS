@@ -89,6 +89,11 @@ def gasInfo():
         return jsonify(meter_consump), 200
     else return 'Resource Unavailiable', 500
 
+@app.route('/not_found')
+def not_found():
+    # Returning a 404 Not Found status code
+    return jsonify({'error': 'Resource not found'}), 404
+
 def check_auth(username, password):
     """Check if a username and password are valid."""
     return username == USERNAME and password == PASSWORD
