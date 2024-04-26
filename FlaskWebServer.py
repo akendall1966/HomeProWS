@@ -26,7 +26,8 @@ def electricity():
     rsp = request_get_response("get_meter_consumption", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        return jsonify(meter_consump)
+        return jsonify(meter_consump), 200
+    else return 'Resource Unavailiable', 500
     
 @app.route('/electricityStatus')
 def electricityStatus():
@@ -37,7 +38,8 @@ def electricityStatus():
     rsp = request_get_response("get_meter_status", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        return jsonify(meter_consump)
+        return jsonify(meter_consump), 200
+    else return 'Resource Unavailiable', 500
     
 @app.route('/electricityInfo')
 def electricityInfo():
@@ -48,7 +50,8 @@ def electricityInfo():
     rsp = request_get_response("get_meter_info", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        return jsonify(meter_consump)
+        return jsonify(meter_consump), 200
+     else return 'Resource Unavailiable', 500
     
 @app.route('/gas')
 def gas():
@@ -59,7 +62,8 @@ def gas():
     rsp = request_get_response("get_meter_consumption", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        return jsonify(meter_consump)
+        return jsonify(meter_consump), 200
+    else return 'Resource Unavailiable', 500
     
 @app.route('/gasStatus')
 def gasStatus():
@@ -70,7 +74,8 @@ def gasStatus():
     rsp = request_get_response("get_meter_status", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        return jsonify(meter_consump)
+        return jsonify(meter_consump), 200
+    else return 'Resource Unavailiable', 500
     
 @app.route('/gasInfo')
 def gasInfo():
@@ -81,7 +86,8 @@ def gasInfo():
     rsp = request_get_response("get_meter_info", params)
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
-        return jsonify(meter_consump)
+        return jsonify(meter_consump), 200
+    else return 'Resource Unavailiable', 500
 
 def check_auth(username, password):
     """Check if a username and password are valid."""
