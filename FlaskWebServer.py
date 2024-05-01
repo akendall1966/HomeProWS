@@ -27,7 +27,7 @@ def electricity():
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
         return jsonify(meter_consump), 200
-    else return 'Resource Unavailiable', 500
+    else: return 'Resource Unavailiable', 500
     
 @app.route('/electricityStatus')
 def electricityStatus():
@@ -39,7 +39,7 @@ def electricityStatus():
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
         return jsonify(meter_consump), 200
-    else return 'Resource Unavailiable', 500
+    else: return 'Resource Unavailiable', 500
     
 @app.route('/electricityInfo')
 def electricityInfo():
@@ -51,7 +51,7 @@ def electricityInfo():
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
         return jsonify(meter_consump), 200
-     else return 'Resource Unavailiable', 500
+    else: return 'Resource Unavailiable', 500
     
 @app.route('/gas')
 def gas():
@@ -63,7 +63,7 @@ def gas():
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
         return jsonify(meter_consump), 200
-    else return 'Resource Unavailiable', 500
+    else: return 'Resource Unavailiable', 500
     
 @app.route('/gasStatus')
 def gasStatus():
@@ -75,7 +75,7 @@ def gasStatus():
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
         return jsonify(meter_consump), 200
-    else return 'Resource Unavailiable', 500
+    else: return 'Resource Unavailiable', 500
     
 @app.route('/gasInfo')
 def gasInfo():
@@ -87,7 +87,7 @@ def gasInfo():
     if  rsp.ok:
         meter_consump = json.loads(json.loads(rsp.text)['meter_consump'])
         return jsonify(meter_consump), 200
-    else return 'Resource Unavailiable', 500
+    else: return 'Resource Unavailiable', 500
 
 @app.route('/not_found')
 def not_found():
@@ -109,4 +109,4 @@ def authenticate():
 if __name__ == '__main__':
     # Use SSL context to configure SSL certificate and key
     ssl_context = ('/root/cert.pem', '/root/key.pem')
-    app.run(debug=True, ssl_context=ssl_context, host='0.0.0.0', port=8080)
+    app.run(debug=True, ssl_context=ssl_context, host='192.168.1.108', port=8080)

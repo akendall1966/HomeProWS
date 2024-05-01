@@ -121,8 +121,8 @@ def request_get_response(api, params):
 def main():
     # Set server address and port
     server_address = ("", 443)
-    certfile = "/root/certificate.crt"
-    keyfile = "/root/private_key.key"
+    certfile = "certificate.crt"
+    keyfile = "private_key.key"
     # Create an HTTP server instance
     httpd = HTTPServer(server_address, MyHTTPRequestHandler)
     httpd.socket = ssl.wrap_socket(
